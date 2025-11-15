@@ -26,7 +26,13 @@ SECRET_KEY = 'django-insecure-o(m+^n!(_-#ii_59j$k12^i)$10m8)4406r62tbcpcs*26qq67
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['*']
+
+import os
+codespace_name = os.environ.get('CODESPACE_NAME')
+allowed_hosts = ['localhost', '127.0.0.1']
+if codespace_name:
+    allowed_hosts.append(f"{codespace_name}-8000.app.github.dev")
+ALLOWED_HOSTS = allowed_hosts
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
